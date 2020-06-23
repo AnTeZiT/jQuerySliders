@@ -2,10 +2,10 @@ jQuery(document).ready(function($){
     var dragging = false,
         scrolling = false,
         resizing = false;
-    //cache jQuery objects
+    //Keširanje jQuery objekata
     var imageComparisonContainers = $('.cd-image-container');
-    //check if the .cd-image-container is in the viewport 
-    //if yes, animate it
+    //provejra da li je .cd-image-container u viewportu 
+    //ako da, animira se
     checkPosition(imageComparisonContainers);
     $(window).on('scroll', function(){
         if( !scrolling) {
@@ -16,13 +16,13 @@ jQuery(document).ready(function($){
         }
     });
     
-    //make the .cd-handle element draggable and modify .cd-resize-img width according to its position
+    //napravi da .cd-handle element bude pomjerljiv i modifikuje .cd-resize-img širinu prema poziciji
     imageComparisonContainers.each(function(){
         var actual = $(this);
         drags(actual.find('.cd-handle'), actual.find('.cd-resize-img'), actual, actual.find('.cd-image-label[data-type="original"]'), actual.find('.cd-image-label[data-type="modified"]'));
     });
 
-    //upadate images label visibility
+    //updejta vidljivost oznake slike
     $(window).on('resize', function(){
         if( !resizing) {
             resizing =  true;
@@ -53,7 +53,7 @@ jQuery(document).ready(function($){
         resizing = false;
     }
 
-    //draggable funtionality - credits to http://css-tricks.com/snippets/jquery/draggable-without-jquery-ui/
+    //funksionalnost za pomjeranje - source http://css-tricks.com/snippets/jquery/draggable-without-jquery-ui/
     function drags(dragElement, resizeElement, container, labelContainer, labelResizeElement) {
         dragElement.on("mousedown vmousedown", function(e) {
             dragElement.addClass('draggable');
@@ -86,7 +86,7 @@ jQuery(document).ready(function($){
 
     function animateDraggedHandle(e, xPosition, dragWidth, minLeft, maxLeft, containerOffset, containerWidth, resizeElement, labelContainer, labelResizeElement) {
         var leftValue = e.pageX + xPosition - dragWidth;   
-        //constrain the draggable element to move inside his container
+        //zaustavlja slider unutar slike
         if(leftValue < minLeft ) {
             leftValue = minLeft;
         } else if ( leftValue > maxLeft) {
